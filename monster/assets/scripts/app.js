@@ -50,12 +50,12 @@ function endRound () {
         reset();
     }
 }
-
+//parameter mode identifies and designates attack type, used to be a string now its a global constant
 function attackMonster (mode) {
     let maxDamage;
-    if (mode ===MODE_ATTACK) {
+    if (mode===MODE_ATTACK) {
         maxDamage=ATTACK_VALUE;
-    } else if (mode ===STRONG_MODE_ATTACK){
+    } else if (mode===STRONG_MODE_ATTACK){
         maxDamage=STRONG_ATTACK_VALUE;
     }
     const damage= dealMonsterDamage(maxDamage);
