@@ -3,22 +3,34 @@ const ATTACK_VALUE = 10;
 const MONSTER_ATTACK_VALUE= 14;
 const STRONG_ATTACK_VALUE= 17;
 const HEAL_VALUE= 20;
+
 let chosenMaxLife = 100;
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
+let hasBonusLife = true; 
 
 //function is called by render.js, sets the players' maximum life in the bars
 adjustHealthBars(chosenMaxLife); 
 
 function endRound () { 
+    const initialPlayerHealth = currentPlayerHealth;
     const playerdamaged=dealPlayerDamage(MONSTER_ATTACK_VALUE);
      currentPlayerHealth -=playerdamaged;
+
+    if (currentPlayerHealth <=0 && hasBonusLife) {
+        hasBonusLife = false;
+        removeBonusLife();
+        currentPlayerHealth = initialPlayerHealth; 
+        setPlayerHealth(initialPlayerHealth);
+        alert ('You got saved by the bonus life!');
+    }
+
     if (currentMonsterHealth <= 0 && currentPlayerHealth >0) {
          alert('You win!');
      } else if (currentPlayerHealth <=0 && currentMonsterHealth >0){
          alert ('You lost!');
      } else if (currentPlayerHealth <=0 && currentMonsterHealth <=0)
-         alert ('You have a draw')
+         alert ('You have a draw');
 }
 
 function attackMonster (mode) {
@@ -43,6 +55,7 @@ function strongAttackHandler () {
 
 function healPlayerHandler() {
     let healValue;
+    //makes sure can't add more health than max number allowed
     if (currentPlayerHealth >= chosenMaxLife-HEAL_VALUE) {
         alert ('You can not have more than max health');
         healValue = chosenMaxLife - currentPlayerHealth;
