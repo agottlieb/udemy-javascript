@@ -35,6 +35,17 @@ function writeToLog (event, value, monsterHealth, playerHealth) {
         finalMonsterHealth: monsterHealth,
         finalPlayerHealth: playerHealth
     };
+    //switch usage: one condition, checking for equality
+    // switch (event){
+    //   case LOG_EVENT_PLAYER_ATTACK:  //concrete value stored in this variable/parameter
+    //   logEntry.target= 'MONSTER';
+    //   break; //if that case was handled, don't handle other cases otherwise fall through--goes right into next case
+    //   case LOG_EVENT_PLAYER_STRONG_ATTACK:
+    //     logEntry.target= 'MONSTER';
+    //   break; 
+    //   default: logEntry = {};
+    // } 
+
     if (event===LOG_EVENT_PLAYER_ATTACK) {
         logEntry.target= 'MONSTER';
         } else if (event === LOG_EVENT_PLAYER_STRONG_ATTACK) {
