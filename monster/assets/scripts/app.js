@@ -24,6 +24,7 @@ if (isNaN(chosenMaxLife) || chosenMaxLife <=0) {
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true; 
+let lastLoggedEntry;
 
 //function is called by render.js, sets the players' maximum life in the bars
 adjustHealthBars(chosenMaxLife); 
@@ -198,14 +199,18 @@ function printLogHandler () {
 
   let i = 0;
  for (const logEntry of battleLog) {
-   console.log(`#${i}`); //dynamic content to give the number of the log entry
-   for (const key in logEntry) {
-    //  console.log(key) //name does not matter, JS knows that this variable refers to left side of the colon
-    //  console.log(logEntry[key]); //JS will access the value of that object, i.e. the right side of the colon
-    console.log (`${key} => ${logEntry[key]}`)
+   if (!lastLoggedEntry && lastLoggedEntry !== 0|| lastLoggedEntry < i) {
+    console.log(`#${i}`); //dynamic content to give the number of the log entry
+    for (const key in logEntry) {
+     //  console.log(key) //name does not matter, JS knows that this variable refers to left side of the colon
+     //  console.log(logEntry[key]); //JS will access the value of that object, i.e. the right side of the colon
+     console.log (`${key} => ${logEntry[key]}`)
+     }
+     lastLoggedEntry=i;
+     break; //allows you to break out of a code execution before it would normally finish
     }
    i++
-
+  
   }
  }
 
