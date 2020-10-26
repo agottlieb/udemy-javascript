@@ -190,8 +190,10 @@ function printLogHandler () {
   for (let i = 0; i <3; i++) {
     console.log("-------")
   }
-    console.log(battleLog);
-}
+ for (const logEntry of battleLog) {
+   console.log(logEntry); 
+  }
+ }
 
 attackBtn.addEventListener('click', attackHandler)
 strongAttackBtn.addEventListener('click', strongAttackHandler)
