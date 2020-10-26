@@ -190,8 +190,16 @@ function printLogHandler () {
   for (let i = 0; i <3; i++) {
     console.log("-------")
   }
+  let i = 0;
  for (const logEntry of battleLog) {
-   console.log(logEntry); 
+   console.log(`#${i}`); //dynamic content to give the number of the log entry
+   for (const key in logEntry) {
+    //  console.log(key) //name does not matter, JS knows that this variable refers to left side of the colon
+    //  console.log(logEntry[key]); //JS will access the value of that object, i.e. the right side of the colon
+    console.log (`${key} => ${logEntry[key]}`)
+    }
+   i++
+
   }
  }
 
