@@ -187,9 +187,15 @@ function healPlayerHandler() {
 }
 
 function printLogHandler () {
-  for (let i = 0; i <3; i++) {
-    console.log("-------")
+  // for (let i = 0; i <3; i++) { //if run third part outside loop body, will run before code inside {}
+  //   console.log("-------")
+  // }
+  let j = 0;
+  while (j <3) {
+    console.log(j);
+    j++;
   }
+
   let i = 0;
  for (const logEntry of battleLog) {
    console.log(`#${i}`); //dynamic content to give the number of the log entry
