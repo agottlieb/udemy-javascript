@@ -18,7 +18,7 @@ const getPlayerChoice = () => {
     ).toUpperCase();
     if (selection !== ROCK && selection !== PAPER && selection !== SCISSORS) {
       alert(`Invalid choice! We chose ${DEFAULT_USER_CHOICE} for you!`);
-      return DEFAULT_USER_CHOICE;
+      return;
     }
     return selection;
   };
@@ -35,7 +35,8 @@ const getPlayerChoice = () => {
   };
 
 //removed function keyword and replaced with keyword arrow function
-const getWinner = (cChoice, pChoice) =>
+//added default argument to player choice
+const getWinner = (cChoice, pChoice = DEFAULT_USER_CHOICE) =>
   cChoice === pChoice
     ? RESULT_DRAW
     : (cChoice === ROCK && pChoice === PAPER) ||
@@ -52,25 +53,31 @@ const getWinner = (cChoice, pChoice) =>
     // else { return RESULT_COMPUTER_WINS};
  
 startGameBtn.addEventListener('click', () => {
-        if (gameIsRunning) {
-          return;
-        }
-        gameIsRunning = true;
-        console.log('Game is starting...');
-        const playerChoice = getPlayerChoice();
-        const computerChoice = getComputerChoice();
-        const winner = getWinner(computerChoice, playerChoice);
-        let message; 
-        if (winner ===RESULT_DRAW) {
-            message= `You picked ${playerChoice} and the computer picked ${computerChoice} and you had a draw.`
-        } else if (winner===RESULT_PLAYER_WINS) {
-            message= `You picked ${playerChoice} and the computer picked ${computerChoice} and you win!`
-        } else {
-            message= `You picked ${playerChoice} and the computer picked ${computerChoice} and computer wins :(`
-        }
-        alert(message);
-        gameIsRunning = false;
-      });
+if (gameIsRunning) {
+    return;}
+gameIsRunning = true;
+    console.log('Game is starting...');
+    const playerChoice = getPlayerChoice();
+    const computerChoice = getComputerChoice();
+    let winner;
+    //test case where in else the playerChoice is undefined
+    if (playerChoice) {
+        winner = getWinner(computerChoice, playerChoice);
+    } else {
+       winner=getWinner(computerChoice);
+    }
+    
+    let message; 
+    if (winner ===RESULT_DRAW) {
+        message= `You picked ${playerChoice ||DEFAULT_USER_CHOICE} and the computer picked ${computerChoice} and you had a draw.`
+    } else if (winner===RESULT_PLAYER_WINS) {
+        message= `You picked ${playerChoice ||DEFAULT_USER_CHOICE} and the computer picked ${computerChoice} and you win!`
+    } else {
+        message= `You picked ${playerChoice ||DEFAULT_USER_CHOICE} and the computer picked ${computerChoice} and computer wins :(`
+    }
+    alert(message);
+    gameIsRunning = false;
+  });           
 
 //function as an expression + anonymous function
 // const start = function() { //storing a function in a variable, call the const to call the function
