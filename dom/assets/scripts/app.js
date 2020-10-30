@@ -5,6 +5,8 @@ const cancelAddMovieButton = addMovieModal.querySelector('.btn--passive');
 const confirmAddddMovieButton = cancelAddMovieButton.nextElementSibling;
 const userInputs = addMovieModal.querySelectorAll('input');
 
+const movies = [];
+
 //classlist is read-only, but can toggle/remove and add css properties
 //keeps the other classes there 
 const toggleMovieModal = () => {
@@ -20,9 +22,18 @@ const toggleBackdropHandler = () => {
     addBackdrop.classList.toggle('visible')
 }
 
+const clearMovieInputs = () => {
+    for ( const input of userInputs) {
+        input.value = ''
+    }
+};
+
+
 const cancelButtonHandler = () => {
     toggleMovieModal();
-}
+    clearMovieInputs();
+};
+
 
 const confirmMovieHandler = () => {
     const titleValue = userInputs[0].value;
@@ -34,7 +45,15 @@ const confirmMovieHandler = () => {
         alert ('Please enter valid values')
         return;
     }
-
+    const newMovie = {
+        title: titleValue,
+        image: imageUrlValue,
+        rating: ratingValue
+    };
+    movies.push(newMovie);
+    console.log(movies);
+    toggleMovieModal();
+    clearMovieInputs();
 }
 
 startAddMovieButton.addEventListener('click', toggleMovieModal);
