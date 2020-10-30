@@ -4,8 +4,16 @@ const addBackdrop = document.getElementById('backdrop');
 const cancelAddMovieButton = addMovieModal.querySelector('.btn--passive');
 const confirmAddddMovieButton = cancelAddMovieButton.nextElementSibling;
 const userInputs = addMovieModal.querySelectorAll('input');
+const entryTextSection = document.getElementById('entry-text');
 
 const movies = [];
+
+const updateUI = () => {
+    if (movies.length === 0){ 
+        entryTextSection.style.display = 'block';
+    } else { entryTextSection.style.display = 'none';
+ }
+}
 
 //classlist is read-only, but can toggle/remove and add css properties
 //keeps the other classes there 
@@ -54,6 +62,7 @@ const confirmMovieHandler = () => {
     console.log(movies);
     toggleMovieModal();
     clearMovieInputs();
+    updateUI(); 
 }
 
 startAddMovieButton.addEventListener('click', toggleMovieModal);
