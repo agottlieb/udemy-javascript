@@ -15,6 +15,21 @@ const updateUI = () => {
  }
 }
 
+const renderNewMovie = (title, imageUrl, rating) => {
+    const newMovie= document.createElement('li');
+    newMovie.className = 'movie-element';
+    newMovie.innerHTML = `
+      <div class="movie-element__image">
+        <img src="${imageUrl}" alt="${title}">
+      </div>
+      <div class="movie-element__info">
+        <h2>${title}</h2>
+        <p>${rating}/5 stars</p>
+      </div>
+    `;
+    const listRoot = document.getElementById('movie-list');
+    listRoot.append(newMovie);
+  };
 //classlist is read-only, but can toggle/remove and add css properties
 //keeps the other classes there 
 const toggleMovieModal = () => {
@@ -62,6 +77,7 @@ const confirmMovieHandler = () => {
     console.log(movies);
     toggleMovieModal();
     clearMovieInputs();
+    renderNewMovie(newMovie.title, newMovie.image, newMovie.rating);
     updateUI(); 
 }
 
