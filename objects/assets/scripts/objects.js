@@ -22,7 +22,7 @@ const renderMovies = (filter = '') => {
     const { info, ...otherProps } = movie;
     console.log(otherProps);
     const { title: movieTitle } = info;
-    let text = movieTitle + ' - ';
+    let text = movieTitle.toUpperCase() + ' - ';
     for (const key in info) {
       if (key !== 'title') {
         text = text + `${key}: ${info[key]}`;
