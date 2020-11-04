@@ -13,24 +13,24 @@ const renderMovies = (filter = '') => {
         movieList.classList.add('visible');
       }
     movieList.innerHTML = '';
-    
     const filteredMovies = !filter
     ? movies
     : movies.filter(movie => movie.info.title.includes(filter));
 
-    //dynamic properties in objects with for-in loop
-    filteredMovies.forEach(movie => {
-        const movieElement = document.createElement('li');
-        let text = movie.info.title + ' - ';
-        for (const key in movie.info) {
-            if (key !== 'title') {
-                text = text + `${key}: ${movie.info[key]}`
-            }
-        }
-        movieElement.textContent = text;
-        movieList.append(movieElement);
-    });
-
+  filteredMovies.forEach(movie => {
+    const movieEl = document.createElement('li');
+    const { info, ...otherProps } = movie;
+    console.log(otherProps);
+    const { title: movieTitle } = info;
+    let text = movieTitle + ' - ';
+    for (const key in info) {
+      if (key !== 'title') {
+        text = text + `${key}: ${info[key]}`;
+      }
+    }
+    movieEl.textContent = text;
+    movieList.append(movieEl);
+  });
 };
 
 const addMovieHandler = (filter = '') => {
