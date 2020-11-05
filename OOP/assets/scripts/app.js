@@ -11,6 +11,21 @@ class Product {
     this.description= desc;
    } 
 }
+
+class ShoppingCart {
+    items = [];
+
+    render() {
+        const cartEl = document.createElement('section');
+        cartEl.innerHTML =`
+        <h2> Total: \$${0} </h2>
+        <button>Act Now!</button>
+        `;
+        cartEl.className='cart';
+        return cartEl;
+    }
+}
+
 //logic to render each grouping of data (product class--groups the data)
 class ProductItem {
     constructor(product) {
@@ -37,7 +52,7 @@ class ProductItem {
           </div>
         `;
       const addCartButton = prodEl.querySelector('button');
-      addCartButton.addEventListener('click', this.addToCart.bind(this));
+      addCartButton.addEventListener('click', this.addToCart.bind(this)); //first this- refers to productItem, second this binds object when cart is rendered
       return prodEl;
     }
   }
@@ -57,7 +72,6 @@ class ProductList {
    constructor () {}
 
    render() {
-    const renderHook = document.getElementById('app');
     const prodList = document.createElement('ul');
     prodList.className= 'product-list';
     for (const prod of this.products) {
@@ -65,8 +79,21 @@ class ProductList {
         const prodElement = productItem.render();
         prodList.append(prodElement);
     }
-    renderHook.append(prodList);
+    return prodList;
  }  
 }
-const productList = new ProductList();
-productList.render();
+
+class Shop {
+ render () {
+    const renderHook = document.getElementById('app');
+    const cart = new ShoppingCart();
+    const cartEl = cart.render();
+    const productList = new ProductList();
+    const prodListEl = productList.render();
+    renderHook.append(cartEl);
+    renderHook.append(prodListEl);
+    }
+}
+
+const shop = new Shop();
+shop.render();
