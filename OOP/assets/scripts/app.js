@@ -3,22 +3,27 @@ class Product {
     imageUrl;
     description;
     price;
+//initializes the values in the class to the values created in the new object
+   constructor(title, image, price, desc) {
+    this.title = title;
+    this.imageUrl = image;
+    this.price= price;
+    this.description= desc;
+   } 
 }
 
 const productList = {
     products: [
-        {title: 'Narwhal Pillow', 
-    imageURL:'https://res-1.cloudinary.com/mp-assets/image/upload/c_pad,f_auto,q_auto,w_550/v1515689100/i-scream/content/images/0/0002723_blue-narwhal-scented-microbead-pillow.png' ,
-        price: 20, 
-        description: 'Unicorn of the Sea'
-        } ,
-        {title: 'Unicorn Floater', 
-        imageUrl:'https://assets.ptimgs.com/ptimgs/rk/images/dp/wcm/202026/0013/img1c.jpg',
-        price: 25, 
-        description: 'Unicorn Floater'
-        }
-    
-    
+        new Product ('Narwhal Pillow',
+        'https://res-1.cloudinary.com/mp-assets/image/upload/c_pad,f_auto,q_auto,w_550/v1515689100/i-scream/content/images/0/0002723_blue-narwhal-scented-microbead-pillow.png',
+        20, 
+        'Unicorn of the Sea'),
+
+        new Product ('Unicorn Floater', 
+        'https://assets.ptimgs.com/ptimgs/rk/images/dp/wcm/202026/0013/img1c.jpg',
+        25, 
+        'Unicorn Floater'
+        )
     ],
 render() {
     const renderHook = document.getElementById('app');
