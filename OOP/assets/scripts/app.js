@@ -15,6 +15,18 @@ class Product {
 class ShoppingCart {
     items = [];
 
+    get totalAmount() {
+      const sum = this.items.reduce((prevValue, curItem) => {
+        return prevValue + curItem.price
+      }, 0);
+      return sum;
+    }
+
+    addProduct(product) {
+        this.items.push(product)
+        this.totalOutput.innerHTML = `<h2> Total: \$${this.totalAmount} </h2>`;
+    }
+
     render() {
         const cartEl = document.createElement('section');
         cartEl.innerHTML =`
@@ -22,6 +34,7 @@ class ShoppingCart {
         <button>Act Now!</button>
         `;
         cartEl.className='cart';
+        this.totalOutput = cartEl.querySelector('h2');
         return cartEl;
     }
 }
@@ -29,12 +42,11 @@ class ShoppingCart {
 //logic to render each grouping of data (product class--groups the data)
 class ProductItem {
     constructor(product) {
-      this.product = product;
+      this.product = product; //adds the product property to newly created objects
     }
   
     addToCart() {
-      console.log('Adding product to cart...');
-      console.log(this.product);
+      App.addProductToCart(this.product);
     }
   
     render() {
@@ -69,7 +81,7 @@ class ProductList {
         'Unicorn Floater'
         )
     ]
-   constructor () {}
+   constructor () {} //can have a constructor without arguments just to initialize a case of that object
 
    render() {
     const prodList = document.createElement('ul');
@@ -86,8 +98,8 @@ class ProductList {
 class Shop {
  render () {
     const renderHook = document.getElementById('app');
-    const cart = new ShoppingCart();
-    const cartEl = cart.render();
+    this.cart = new ShoppingCart();
+    const cartEl = this.cart.render();
     const productList = new ProductList();
     const prodListEl = productList.render();
     renderHook.append(cartEl);
@@ -95,5 +107,19 @@ class Shop {
     }
 }
 
-const shop = new Shop();
-shop.render();
+//static class acts on the class and not an object, glues together other properties
+class App {
+  static cart;
+
+  static init() {
+    const shop = new Shop();
+    shop.render();
+    this.cart = shop.cart;
+  }
+
+  static addProductToCart(product) {
+    this.cart.addProduct(product);
+  }
+}
+
+App.init();
