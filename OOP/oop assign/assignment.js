@@ -11,6 +11,17 @@ class Course {
     summary() {
         console.log(`The name is ${this.title}`)
     }
+
+    set price (priceValue) {
+        if (priceValue < 0) {
+            return
+        }
+    }
+
+    get price () {
+       console.log(`The price is \$${this.price}`) 
+
+    }
 }
 
 class PracticalCourse extends Course {
