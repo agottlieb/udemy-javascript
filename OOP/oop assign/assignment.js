@@ -6,7 +6,7 @@ class Course {
 }
 
     value() {
-        return this.length/this.price
+        return this.length/this._price
     }
     summary() {
         console.log(`The name is ${this.title}`)
@@ -14,13 +14,13 @@ class Course {
 
     set price (priceValue) {
         if (priceValue < 0) {
-            return
+           throw 'Invalid value'
         }
+        this.#price = priceValue; //# makes it a private property, can only be accessed inside class
     }
 
-    get price () {
-       console.log(`The price is \$${this.price}`) 
-
+    get price () {  
+        return '$' + this._price
     }
 }
 
