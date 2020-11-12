@@ -2,7 +2,13 @@ class Course {
     constructor (courseTitle, courseLength, coursePrice) {
     this.title =courseTitle;
     this.length = courseLength;
-    this.price= coursePrice;}
+    this.price= coursePrice}
+
+    value(courseLength, coursePrice) {
+
+        const totalValue = courseLength/coursePrice
+        console.log(totalValue);
+    }
 }
 
 // class CourseList {
