@@ -7,6 +7,9 @@ class Course {
 
 class CourseList {
     courses = [
-        new Course ('Shakespeare')
+        new Course ('Shakespeare', '5 hours', 40),
+        new Course ('Western Medicine', '7 hours', 50)
     ]
 }
+
+console.log (CourseList);
