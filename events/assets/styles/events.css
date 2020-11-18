@@ -39,3 +39,17 @@ button:active {
 form {
   color: red;
 }
+
+li {
+  color: blue;
+  border: 1px solid green;
+  padding: 1rem
+}
+
+ul {
+  list-style-type: none;
+}
+
+.highlight {
+  background-color: rebeccapurple;
+}

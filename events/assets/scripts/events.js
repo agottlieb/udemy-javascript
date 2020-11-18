@@ -44,3 +44,18 @@ button.addEventListener('click', event => {
     console.log(event);
     console.log('BUTTON!');
 });    
+
+const listItems = document.querySelectorAll('li');
+const list = document.querySelector('ul');
+
+//take advantage of event delegation, using a parent node to activate a child
+list.addEventListener('click', event => {
+            //event.target.classList.toggle('highlight');
+            event.target.closest('li').classList.toggle('highlight');
+        });
+
+// listItems.forEach(listItem => {
+//     listItem.addEventListener('click', event => {
+//         event.target.classList.toggle('highlight');
+//     });
+// });
