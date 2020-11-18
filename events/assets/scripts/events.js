@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll('button');
+const button = document.querySelector('button');
 
 //global property can be accessed
 // button.onclick = function () {
@@ -30,3 +30,17 @@ const form = document.querySelector('form');
 form.addEventListener('submit', event=> {
     event.preventDefault();
     console.log(event)})
+
+const div = document.querySelector('div');
+
+div.addEventListener('click', event => {
+    console.log(event);
+    console.log('DIV!');
+} //when true added, it registers during the capture phase, puts the ancestor first
+);    
+
+button.addEventListener('click', event => {
+    event.stopPropagation();
+    console.log(event);
+    console.log('BUTTON!');
+});    
