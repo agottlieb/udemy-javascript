@@ -1,13 +1,13 @@
-const button = document.querySelector('button');
+const buttons = document.querySelectorAll('button');
 
 //global property can be accessed
 // button.onclick = function () {
 
 // }
-
-const buttonClickHandler = () => {
-    alert('button was clicked!');
-};
+const buttonClickHandler = event => {
+    // event.target.disabled = true;
+    console.log(event);
+  };
 
 const anotherButtonClickHandler = () => {
     console.log('This was clicked');
@@ -15,9 +15,13 @@ const anotherButtonClickHandler = () => {
 
 // button.onclick = buttonClickHandler;
 
-button.addEventListener('click', buttonClickHandler)
+// button.addEventListener('click', buttonClickHandler)
 
 //removes the event after its called, must use same method
-setTimeout ( () => {
-    button.removeEventListener('click', buttonClickHandler);
-}, 2000);
+// setTimeout ( () => {
+//     button.removeEventListener('click', buttonClickHandler);
+// }, 2000);
+
+buttons.forEach(btn => {
+    btn.addEventListener('mouseenter', buttonClickHandler);
+  });
