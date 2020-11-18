@@ -9,4 +9,15 @@ const buttonClickHandler = () => {
     alert('button was clicked!');
 };
 
-button.onclick = buttonClickHandler;
+const anotherButtonClickHandler = () => {
+    console.log('This was clicked');
+};
+
+// button.onclick = buttonClickHandler;
+
+button.addEventListener('click', buttonClickHandler)
+
+//removes the event after its called, must use same method
+setTimeout ( () => {
+    button.removeEventListener('click', buttonClickHandler);
+}, 2000);
